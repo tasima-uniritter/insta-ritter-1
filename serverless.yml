@@ -13,14 +13,14 @@ provider:
 
 functions:
   all:
-    handler: src/handler.all
+    handler: src/handler/all.handler
     events:
       - http:
           path: photos
           method: get
           cors: true
   find:
-    handler: src/handler.find
+    handler: src/handler/find.handler
     events:
       - http:
           path: photos/{id}
