@@ -5,10 +5,12 @@ An Instagram like application :D
 
 # Getting started
 
-To run this application you should have `serverless` installed globally on your environment. If you don't have, you can install it with `yarn global add serverless` or `npm install -g serverless`.
+To run this application you should have `serverless` installed globally on your environment and `localstack`.
 
+- Start `localstack`.
+- Login in your serverless account with `serverless login`.
 - Install dependencies with `yarn install` or `npm install`.
-- Run locally with `serverless offiline start`.
+- Run locally with `yarn start` or `npm start`.
 
 # Team
 
