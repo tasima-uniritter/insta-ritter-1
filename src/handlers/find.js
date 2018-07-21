@@ -9,7 +9,7 @@ module.exports.handler = async ({ pathParameters: { id } }, context) => {
   const data = await photoRepository.findById(id);
 
   return {
-    statusCode: photo ? 200 : 404,
+    statusCode: 200,
     body: {
       links: {
         self: `/photos/${id}`

@@ -6,13 +6,13 @@ module.exports.handler = async ({ body }, context) => {
 
   await connect(process.env.MONGO);
 
-  const data = await photoRepository.store(body);
+  const data = await photoRepository.store(JSON.parse(body));
 
   return {
     statusCode: 200,
     body: {
       links: {
-        self: "/photos"
+        self: '/photos'
       },
       data,
     }
