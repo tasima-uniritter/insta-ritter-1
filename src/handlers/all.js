@@ -1,14 +1,14 @@
 const connect = require('../utils/connect');
 const photoRepository = require('../repositories/photo');
 
-module.exports.handler = async (event, context, callback) => {
+module.exports.handler = async (event, context) => {
   context.callbackWaitsForEmptyEventLoop = false;
 
   await connect(process.env.MONGO);
 
   const data = await photoRepository.all();
 
-  const response = {
+  return {
     statusCode: 200,
     body: {
       links: {
@@ -17,6 +17,4 @@ module.exports.handler = async (event, context, callback) => {
       data,
     }
   };
-
-  callback(null, response);
 };
