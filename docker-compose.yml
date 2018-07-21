@@ -1,11 +1,13 @@
-version: "3"
+version: '3'
+
 services:
   mongo:
     image: mongo:latest
-    expose:
-      - '27017'
-    command: '--smallfiles --bind_ip wikidb'
-    environment:
-      - 'MONGO_LOG_DIR=/dev/null'
+    ports:
+        - 27017:27017
     volumes:
-      - ./data/mongo:/data/db
+      - mongodb:/data/db
+    command: mongod
+
+volumes:
+  mongodb:
