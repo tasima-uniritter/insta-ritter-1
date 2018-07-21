@@ -30,3 +30,10 @@ functions:
             parameters:
               paths:
                 id: true
+  root: 
+    handler: src/handler/index.handler           
+    events:
+      - http:
+          path: /
+          method: get
+          cors: true   
