@@ -5,10 +5,9 @@ An Instagram like application :D
 
 # Getting started
 
-To run this application you should have `serverless` installed globally on your environment and `localstack`.
+To run this application you should have `serverless` installed globally on your environment.
 
-- Start `localstack`.
-- Login in your serverless account with `serverless login`.
+- Start services with `docker-compose up`.
 - Install dependencies with `yarn install` or `npm install`.
 - Run locally with `yarn start` or `npm start`.
 

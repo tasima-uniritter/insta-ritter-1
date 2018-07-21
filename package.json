@@ -1,10 +1,13 @@
 {
   "license": "MIT",
   "scripts": {
-    "start": "cross-env AWS_ACCESS_KEY_ID=dummy AWS_SECRET_ACCESS_KEY=dummy AWS_REGION=us-east-1 serverless offline start"
+    "start": "cross-env MONGO=mongodb://mongo:27017/insta-ritter serverless offline --skipCacheInvalidation start"
   },
   "devDependencies": {
     "cross-env": "^5.2.0",
     "serverless-offline": "^3.25.6"
+  },
+  "dependencies": {
+    "mongoose": "^5.2.4"
   }
 }
