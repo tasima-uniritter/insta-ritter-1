@@ -1,11 +1,9 @@
 const Photo = require('../models/photo');
 
-module.exports.all = options => Photo.find({}, options).exec();
+module.exports.all = () => Photo.scan().exec();
 
-module.exports.findById = id => Photo.findById(id).exec();
+module.exports.findById = id => Photo.scan({ id }).exec();
 
-module.exports.store = data => {
-  const photo = new Photo(data);
+module.exports.store = Photo.create;
 
-  return photo.save();
-};
+module.exports.destroy = id => Photo.delete({ id })

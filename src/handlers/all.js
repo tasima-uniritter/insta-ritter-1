@@ -1,11 +1,10 @@
-const connect = require('../utils/connect');
+const dynamoose = require('dynamoose');
+
+true && dynamoose.local('http://localhost:4569');
+
 const photoRepository = require('../repositories/photo');
 
-module.exports.handler = async (event, context) => {
-  context.callbackWaitsForEmptyEventLoop = false;
-
-  await connect(process.env.MONGO);
-
+module.exports.handler = async () => {
   const data = await photoRepository.all();
 
   return {

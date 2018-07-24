@@ -33,3 +33,10 @@ functions:
           path: photos/{id}
           method: get
           cors: true
+  destroy:
+    handler: src/handlers/destroy.handler
+    events:
+      - http:
+          path: photos/{id}
+          method: delete
+          cors: true
