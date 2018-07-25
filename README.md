@@ -1,5 +1,5 @@
 
-# Insta-Ritter
+# Insta-Ritter (API)
 
 An Instagram like application :D
 
