@@ -6,12 +6,15 @@ const schema = new dynamoose.Schema({
     type : String,
     hashKey : true,
     default : uuid,
+    required: true,
   },
   uri: {
     type: String,
+    required: false,
   },
   title: {
     type: String,
+    required: false,
   },
 }, {
   timestamps: true,

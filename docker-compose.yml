@@ -13,5 +13,4 @@ services:
       - DOCKER_HOST=unix:///var/run/docker.sock
       - DEFAULT_REGION=ap-southeast-2
     volumes:
-      - "${TMPDIR:-/tmp/localstack}:/tmp/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
