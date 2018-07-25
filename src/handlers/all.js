@@ -1,6 +1,6 @@
 const dynamoose = require('dynamoose');
 
-true && dynamoose.local('http://localhost:4569');
+process.env.NODE_ENV === 'local' && dynamoose.local('http://localhost:4569');
 
 const photoRepository = require('../repositories/photo');
 
