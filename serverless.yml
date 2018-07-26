@@ -6,10 +6,24 @@ region: us-east-1
 
 plugins:
   - serverless-offline
+  - serverless-s3-local
 
 provider:
   name: aws
   runtime: nodejs8.10
+
+custom:
+ s3:
+    host: 0.0.0.0
+    port: 7000
+    directory: /tmp
+
+resources:
+  Resources:
+    NewResource:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: local-bucket  
 
 functions:
   all:

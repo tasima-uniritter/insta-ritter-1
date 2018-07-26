@@ -5,10 +5,14 @@
   },
   "devDependencies": {
     "cross-env": "^5.2.0",
-    "serverless-offline": "^3.25.6"
+    "request": "^2.87.0",
+    "serverless-offline": "^3.25.6",
+    "serverless-s3-local": "^0.3.10"
   },
   "dependencies": {
     "dynamoose": "^0.8.7",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "aws-sdk": "^2.7.9",
+    "node-fetch": "^1.6.3"
   }
 }
