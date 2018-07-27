@@ -1,13 +1,16 @@
 version: '3'
 
 services:
-  mongo:
-    image: mongo:latest
+  localstack:
+    image: localstack/localstack
     ports:
-        - 27017:27017
+      - "4567-4583:4567-4583"
+      - "8080:8080"
+    environment:
+      - SERVICES=dynamodb,s3
+      - DEBUG=${DEBUG- }
+      - DATA_DIR=/tmp/localstack/data
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - DEFAULT_REGION=us-east-1
     volumes:
-      - mongodb:/data/db
-    command: mongod
-
-volumes:
-  mongodb:
+      - "/var/run/docker.sock:/var/run/docker.sock"

@@ -1,8 +1,23 @@
-const mongoose = require('mongoose');
+const dynamoose = require('dynamoose');
+const uuid = require('uuid/v4');
 
-const schema = new mongoose.Schema({
-  uri: String,
-  title: String,
+const schema = new dynamoose.Schema({
+  id: {
+    type : String,
+    hashKey : true,
+    default : uuid,
+    required: true,
+  },
+  uri: {
+    type: String,
+    required: false,
+  },
+  title: {
+    type: String,
+    required: false,
+  },
+}, {
+  timestamps: true,
 });
 
-module.exports = mongoose.model('Photo', schema);
+module.exports = dynamoose.model('Photo', schema);
