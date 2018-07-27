@@ -11,6 +11,6 @@ services:
       - DEBUG=${DEBUG- }
       - DATA_DIR=/tmp/localstack/data
       - DOCKER_HOST=unix:///var/run/docker.sock
-      - DEFAULT_REGION=ap-southeast-2
+      - DEFAULT_REGION=us-east-1
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"

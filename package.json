@@ -1,18 +1,16 @@
 {
   "license": "MIT",
   "scripts": {
-    "start": "cross-env NODE_ENV=local AWS_ACCESS_KEY_ID=dummy AWS_SECRET_ACCESS_KEY=dummy AWS_REGION=us-east-1 serverless offline --skipCacheInvalidation start"
+    "start": "cross-env NODE_ENV=local BUCKET=insta-ritter AWS_ACCESS_KEY_ID=dummy AWS_SECRET_ACCESS_KEY=dummy AWS_REGION=us-east-1 serverless offline --skipCacheInvalidation start"
   },
   "devDependencies": {
     "cross-env": "^5.2.0",
-    "request": "^2.87.0",
-    "serverless-offline": "^3.25.6",
-    "serverless-s3-local": "^0.3.10"
+    "serverless-offline": "^3.25.6"
   },
   "dependencies": {
-    "dynamoose": "^0.8.7",
-    "uuid": "^3.3.2",
     "aws-sdk": "^2.7.9",
-    "node-fetch": "^1.6.3"
+    "axios": "^0.18.0",
+    "dynamoose": "^0.8.7",
+    "uuid": "^3.3.2"
   }
 }
