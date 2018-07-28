@@ -10,66 +10,33 @@ const s3 = new AWS.S3({
 
 module.exports.all = () => Photo.scan().exec();
 
-var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-
-// Use a lookup table to find the index.
-var lookup = new Uint8Array(256);
-for (var i = 0; i < chars.length; i++) {
-  lookup[chars.charCodeAt(i)] = i;
-}
-
-const decode =  function(base64) {
-  var bufferLength = base64.length * 0.75,
-  len = base64.length, i, p = 0,
-  encoded1, encoded2, encoded3, encoded4;
-
-  if (base64[base64.length - 1] === "=") {
-    bufferLength--;
-    if (base64[base64.length - 2] === "=") {
-      bufferLength--;
-    }
-  }
-
-  var arraybuffer = new ArrayBuffer(bufferLength),
-  bytes = new Uint8Array(arraybuffer);
-
-  for (i = 0; i < len; i+=4) {
-    encoded1 = lookup[base64.charCodeAt(i)];
-    encoded2 = lookup[base64.charCodeAt(i+1)];
-    encoded3 = lookup[base64.charCodeAt(i+2)];
-    encoded4 = lookup[base64.charCodeAt(i+3)];
-
-    bytes[p++] = (encoded1 << 2) | (encoded2 >> 4);
-    bytes[p++] = ((encoded2 & 15) << 4) | (encoded3 >> 2);
-    bytes[p++] = ((encoded3 & 3) << 6) | (encoded4 & 63);
-  }
-
-  return arraybuffer;
-};
-
 module.exports.findById = id => Photo.scan({ id }).exec();
 
 module.exports.store = async ({ uri, ...data }) => {
-  // const s3Uri = await new Promise((resolve, reject ) => s3.getSignedUrl('putObject', {
-  //   Bucket: process.env.BUCKET,
-  //   Key: uuid(),
-  //   Body: uri,
-  //   ACL: 'public-read',
-  // }, (err, uri) => {
-  //   if (err) reject(err);
+  const type = uri.split(';')[0].split('/')[1];
+  const filename = `${uuid()}.${type}`;
+  const base64Data = new Buffer(uri.replace(/^data:image\/\w+;base64,/, ""), 'base64')
 
-  //   resolve(uri);
-  // }));
-
-  const response = await s3.putObject({
+  await s3.putObject({
     Bucket: process.env.BUCKET,
-    Key: uuid(),
-    Body: uri,
+    Key: filename,
+    Body: base64Data,
+    ContentEncoding: 'base64',
+    ContentType: `image/${type}`
   }).promise();
+
+  const s3Uri = await new Promise((resolve, reject ) => s3.getSignedUrl('getObject', {
+    Bucket: process.env.BUCKET,
+    Key: filename,
+  }, (err, uri) => {
+    if (err) reject(err);
+
+    resolve(uri);
+  }));
 
   return Photo.create({
     ...data,
-    uri: response,
+    uri: s3Uri,
   });
 };
 
