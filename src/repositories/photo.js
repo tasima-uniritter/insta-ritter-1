@@ -1,5 +1,4 @@
 const AWS = require('aws-sdk');
-const request = require('axios');
 const uuid = require('uuid/v4');
 
 const Photo = require('../models/photo');

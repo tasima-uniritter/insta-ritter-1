@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "aws-sdk": "^2.7.9",
-    "axios": "^0.18.0",
     "dynamoose": "^0.8.7",
     "uuid": "^3.3.2"
   }
